@@ -21,7 +21,3 @@ export default defineConfig(({ mode }) => {
       }
     };
 });
-export default defineConfig({
-  base: '/PRBankStatementParser/',
-  plugins: [react()],
-})
