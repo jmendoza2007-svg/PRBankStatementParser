@@ -1,5 +1,5 @@
 {
-  "name": "PR Bank Statement Parser",
-  "description": "Batch parse PDF bank statements from Popular, FirstBank, and Oriental into QuickBooks-ready Excel files using Gemini AI.",
+  "name": "PR Bank Parser",
+  "description": "Parse PDF bank statements from Banco Popular, FirstBank, and Oriental into QuickBooks-ready Excel files using Gemini AI.",
   "requestFramePermissions": []
 }
