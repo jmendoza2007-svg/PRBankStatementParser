@@ -26,5 +26,36 @@
 </head>
   <body class="bg-gray-50 text-gray-900 antialiased">
     <div id="root"></div>
+
+    <!-- Attempt to load the local module entry. If the environment provides a built JS module (e.g. during development with a bundler or when files are transpiled), this will succeed and mount the React app. If it fails (for example because the browser cannot import TypeScript/TSX directly), we catch the error and render a helpful fallback UI so the page doesn't remain blank. -->
+    <script type="module">
+      (async () => {
+        try {
+          // Try to import the local entry. In a properly-built environment this should mount the app.
+          await import('/index.tsx');
+        } catch (err) {
+          // If importing the module fails (common when serving raw TS/TSX to the browser), render a fallback message.
+          console.error('App failed to load via module import:', err);
+          const root = document.getElementById('root');
+          if (root) {
+            root.innerHTML = `
+              <div class="min-h-screen flex items-center justify-center p-6">
+                <div class="max-w-lg w-full bg-white rounded-xl shadow p-6 text-center">
+                  <h1 class="text-2xl font-bold text-gray-900 mb-2">PR Bank Statement Parser</h1>
+                  <p class="text-gray-600 mb-4">The application could not be started directly from the browser. This typically happens when the project needs to be built (for example with Vite, webpack, or another bundler) before deployment.</p>
+                  <p class="text-sm text-gray-500 mb-4">If you're running locally, try:</p>
+                  <ul class="text-left text-sm text-gray-700 mb-4" style="list-style: disc; margin-left: 1.25rem;">
+                    <li>Install dependencies: <code>npm install</code> or <code>pnpm install</code></li>
+                    <li>Run the dev server: <code>npm run dev</code> or the equivalent for the project</li>
+                    <li>Or build and serve the production bundle: <code>npm run build</code> then serve the <code>dist</code> folder</li>
+                  </ul>
+                  <a href="https://github.com/jmendoza2007-svg/PRBankStatementParser" target="_blank" rel="noreferrer" class="inline-block mt-2 px-4 py-2 bg-blue-600 text-white rounded">Open repository</a>
+                </div>
+              </div>
+            `;
+          }
+        }
+      })();
+    </script>
   </body>
 </html>
